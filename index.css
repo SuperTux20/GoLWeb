@@ -1,0 +1,39 @@
+* {
+    text-align: center;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Liberation Sans", "Arial", "Helvetica", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    background-color: #007f7fbf;
+    font-size: 16pt;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 300;
+    outline: none;
+}
+
+#moore-newman,
+li {
+    display: inline-block;
+}
+
+#info {
+    margin: 20% 30%;
+}
+
+.menu {
+    font-size: 5em;
+    margin: 10%;
+}
+
+button.menu {
+    margin: 1%;
+    font-size: 16pt;
+    cursor: pointer;
+    border-radius: 32px;
+}

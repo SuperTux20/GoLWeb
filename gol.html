@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cellular Automata</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <h1><a href="index.html">Back</a></h1>
+    <p>Basic Game of Life engine taken from multiple sources</p>
+    <p>Configuration options added by me</p>
+    <div id="control">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+    <br />
+    <div id="config">
+        <p id="moore-newman">Moore (8-cell) Neighborhood</p>
+        <input id="mncheck" type="checkbox" checked="true" onchange="toggleNeighborhood();">
+        <br />
+        <br />
+        <ol id="survivors" start="0">
+            Neighbors needed to survive:
+            <li>0 <input id="s0" type="checkbox"></li>
+            <li>1 <input id="s1" type="checkbox"></li>
+            <li>2 <input id="s2" type="checkbox" checked="true"></li>
+            <li>3 <input id="s3" type="checkbox" checked="true"></li>
+            <li>4 <input id="s4" type="checkbox"></li>
+            <li>5 <input id="s5" type="checkbox"></li>
+            <li>6 <input id="s6" type="checkbox"></li>
+            <li>7 <input id="s7" type="checkbox"></li>
+            <li>8 <input id="s8" type="checkbox"></li>
+        </ol>
+        <ol id="reproducers" start="0">
+            Neighbors needed to reproduce:
+            <li>0 <input id="r0" type="checkbox"></li>
+            <li>1 <input id="r1" type="checkbox"></li>
+            <li>2 <input id="r2" type="checkbox"></li>
+            <li>3 <input id="r3" type="checkbox" checked="true"></li>
+            <li>4 <input id="r4" type="checkbox"></li>
+            <li>5 <input id="r5" type="checkbox"></li>
+            <li>6 <input id="r6" type="checkbox"></li>
+            <li>7 <input id="r7" type="checkbox"></li>
+            <li>8 <input id="r8" type="checkbox"></li>
+        </ol>
+    </div>
+    <canvas id="gamefield" width="512" height="512"></canvas>
+</body>
+<script src="CellularAutomata.js"></script>
+<script src="index.js"></script>
+
+</html>
