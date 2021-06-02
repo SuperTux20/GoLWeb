@@ -10,17 +10,17 @@ class CellularAutomaton {
 
         this.arrayInit = () => {
             for (let i = 0; i < this.cells_in_rows; i++) {
-                this.active_array[i] = [];
+                this.inactive_array[i] = [];
                 for (let j = 0; j < this.cells_in_column; j++)
-                    this.active_array[i][j] = false;
+                    this.inactive_array[i][j] = false;
             }
-            this.inactive_array = this.active_array;
+            this.active_array = this.inactive_array;
         };
 
         this.arrayRand = () => {
             for (let i = 0; i < this.cells_in_rows; i++) {
                 for (let j = 0; j < this.cells_in_column; j++)
-                    this.active_array[i][j] = (Math.random() > 0.5) ? true : false;
+                    this.inactive_array[i][j] = (Math.random() > 0.5) ? true : false;
             }
         };
 
@@ -39,20 +39,25 @@ class CellularAutomaton {
         };
 
         this.cntNghbrs = () => {
-            this.setCellValueHelper = (row, col) => {
-                try { return this.active_array[row][col]; } catch { return 0; }
+            this.valueHelper = (row, col) => {
+                try { return this.inactive_array[row][col] ? 1 : 0; } catch { return 0; }
             };
             this.cntNghbrs = (row, col) => {
                 let total_neighbors = 0;
-                total_neighbors += this.setCellValueHelper(row - 1, col);
-                total_neighbors += this.setCellValueHelper(row, col - 1);
-                total_neighbors += this.setCellValueHelper(row + 1, col);
-                total_neighbors += this.setCellValueHelper(row, col + 1);
+                total_neighbors += this.valueHelper(row - 1, col);
+                total_neighbors += this.valueHelper(row, col - 1);
+                total_neighbors += this.valueHelper(row + 1, col);
+                total_neighbors += this.valueHelper(row, col + 1);
                 if (moore) {
-                    total_neighbors += this.setCellValueHelper(row - 1, col - 1);
-                    total_neighbors += this.setCellValueHelper(row + 1, col - 1);
-                    total_neighbors += this.setCellValueHelper(row + 1, col + 1);
-                    total_neighbors += this.setCellValueHelper(row - 1, col + 1);
+                    total_neighbors += this.valueHelper(row - 1, col - 1);
+                    total_neighbors += this.valueHelper(row + 1, col - 1);
+                    total_neighbors += this.valueHelper(row + 1, col + 1);
+                    total_neighbors += this.valueHelper(row - 1, col + 1);
+                } else if (extendvn) {
+                    total_neighbors += this.valueHelper(row - 2, col);
+                    total_neighbors += this.valueHelper(row, col - 2);
+                    total_neighbors += this.valueHelper(row + 2, col);
+                    total_neighbors += this.valueHelper(row, col + 2);
                 }
                 return total_neighbors;
             };
@@ -62,13 +67,13 @@ class CellularAutomaton {
             var total = this.cntNghbrs(row, col);
             if (!this.active_array[row][col]) {
                 for (var reproducible in reproduction) {
-                    if (total == reproduction[reproducible]) {
+                    if (total == reproducible && reproduction[reproducible]) {
                         return reproduction[reproducible];
                     }
                 }
             } else if (this.active_array[row][col]) {
                 for (var survivable in survival) {
-                    if (total == survival[survivable]) {
+                    if (total == survivable && survival[survivable]) {
                         return survival[survivable];
                     }
                 }
@@ -82,6 +87,7 @@ class CellularAutomaton {
                     this.inactive_array[i][j] = new_state;
                 }
             }
+            this.active_array = this.inactive_array;
         };
 
         this.runGame = () => {

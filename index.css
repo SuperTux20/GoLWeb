@@ -22,6 +22,11 @@ li {
     display: inline-block;
 }
 
+#extended-newman,
+#extcheck {
+    display: none;
+}
+
 #info {
     margin: 20% 30%;
 }
@@ -36,4 +41,12 @@ button.menu {
     font-size: 16pt;
     cursor: pointer;
     border-radius: 32px;
+}
+
+#speed {
+    width: 50%;
+}
+
+#gamefield {
+    width: 50%;
 }
