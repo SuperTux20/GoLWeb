@@ -66,7 +66,7 @@ function speedcheck() {
     if (speed == 0)
         output.innerHTML = "MAX"
     else
-        output.innerHTML = speed.concat("ms");
+        output.innerHTML = speed.concat("ms per update");
 }
 
 speedcheck();

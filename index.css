@@ -18,8 +18,15 @@ button {
 }
 
 #moore-newman,
-li {
+.cblabel,
+.cbblock,
+.cbblock p {
     display: inline-block;
+}
+
+.cblabel,
+.cbblock {
+    font-family: "Liberation Mono", monospace;
 }
 
 #extended-newman,
@@ -27,8 +34,28 @@ li {
     display: none;
 }
 
-#info {
-    margin: 20% 30%;
+@media only screen and (min-width: 1000px) {
+    #info {
+        margin: 5% 20%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #info {
+        margin: 10% 20%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    #info {
+        margin: 15% 20%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #info {
+        margin: 20% 20%;
+    }
 }
 
 .menu {
@@ -37,16 +64,17 @@ li {
 }
 
 button.menu {
-    margin: 1%;
+    margin: 0;
     font-size: 16pt;
     cursor: pointer;
     border-radius: 32px;
 }
 
-#speed {
+#speed,
+#gamefield {
     width: 50%;
 }
 
-#gamefield {
-    width: 50%;
+nav {
+    margin: 0 10%;
 }

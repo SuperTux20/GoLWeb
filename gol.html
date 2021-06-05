@@ -11,7 +11,10 @@
 </head>
 
 <body>
-    <h1><a href="index.html">Back</a></h1>
+    <nav>
+        <a href="index.html" class="menu"><button class="menu">Back to splash page</button></a>
+        <a href="about.html" class="menu"><button class="menu">About Cellular Automata</button></a>
+    </nav>
     <p>Basic Game of Life engine taken from multiple sources</p>
     <p>Configuration options added by me</p>
     <div id="control">
@@ -20,7 +23,7 @@
         <br />
         <br />
         <input type="range" min="0" max="1000" value="500" id="speed">
-        <p>Speed: <span id="speedlabel">500ms</span></p>
+        <p>Speed: <span id="speedlabel">500ms per update</span></p>
     </div>
     <br />
     <div id="config">
@@ -31,30 +34,37 @@
         <input id="extcheck" type="checkbox" onchange="extendNewman();">
         <br />
         <br />
-        <ol id="survivors" start="0">
-            Neighbors needed to survive:
-            <li>(0 <input id="s0" type="checkbox" onchange="surCheck(0);">)</li>
-            <li>(1 <input id="s1" type="checkbox" onchange="surCheck(1);">)</li>
-            <li>(2 <input id="s2" type="checkbox" onchange="surCheck(2);" checked="true">)</li>
-            <li>(3 <input id="s3" type="checkbox" onchange="surCheck(3);" checked="true">)</li>
-            <li>(4 <input id="s4" type="checkbox" onchange="surCheck(4);">)</li>
-            <li>(5 <input id="s5" type="checkbox" onchange="surCheck(5);">)</li>
-            <li>(6 <input id="s6" type="checkbox" onchange="surCheck(6);">)</li>
-            <li>(7 <input id="s7" type="checkbox" onchange="surCheck(7);">)</li>
-            <li(>8 <input id="s8" type="checkbox" onchange="surCheck(8);">)</li>
-        </ol>
-        <ol id="reproducers" start="0">
-            Neighbors needed to reproduce:
-            <li>(0 <input id="r0" type="checkbox" onchange="repCheck(0);">)</li>
-            <li>(1 <input id="r1" type="checkbox" onchange="repCheck(1);">)</li>
-            <li>(2 <input id="r2" type="checkbox" onchange="repCheck(2);">)</li>
-            <li>(3 <input id="r3" type="checkbox" onchange="repCheck(3);" checked="true">)</li>
-            <li>(4 <input id="r4" type="checkbox" onchange="repCheck(4);">)</li>
-            <li>(5 <input id="r5" type="checkbox" onchange="repCheck(5);">)</li>
-            <li>(6 <input id="r6" type="checkbox" onchange="repCheck(6);">)</li>
-            <li>(7 <input id="r7" type="checkbox" onchange="repCheck(7);">)</li>
-            <li>(8 <input id="r8" type="checkbox" onchange="repCheck(8);">)</li>
-        </ol>
+        <p class="cblabel">Neighbors needed to live:</p>
+        <div class="cbblock">
+            <p>(0
+                <input id="s0" type="checkbox" onchange="surCheck(0);">) (1
+                <input id="s1" type="checkbox" onchange="surCheck(1);">) (2
+                <input id="s2" type="checkbox" onchange="surCheck(2);" checked="true">)</p>
+            <p>(3
+                <input id="s3" type="checkbox" onchange="surCheck(3);" checked="true">) (4
+                <input id="s4" type="checkbox" onchange="surCheck(4);">) (5
+                <input id="s5" type="checkbox" onchange="surCheck(5);">)</p>
+            <p>(6
+                <input id="s6" type="checkbox" onchange="surCheck(6);">) (7
+                <input id="s7" type="checkbox" onchange="surCheck(7);">) (8
+                <input id="s8" type="checkbox" onchange="surCheck(8);">)</p>
+        </div>
+        <br />
+        <p class="cblabel">Neighbors needed to grow:</p>
+        <div class="cbblock">
+            <p>(0
+                <input id="r0" type="checkbox" onchange="repCheck(0);">) (1
+                <input id="r1" type="checkbox" onchange="repCheck(1);">) (2
+                <input id="r2" type="checkbox" onchange="repCheck(2);">)</p>
+            <p>(3
+                <input id="r3" type="checkbox" onchange="repCheck(3);" checked="true">) (4
+                <input id="r4" type="checkbox" onchange="repCheck(4);">) (5
+                <input id="r5" type="checkbox" onchange="repCheck(5);">)</p>
+            <p>(6
+                <input id="r6" type="checkbox" onchange="repCheck(6);">) (7
+                <input id="r7" type="checkbox" onchange="repCheck(7);">) (8
+                <input id="r8" type="checkbox" onchange="repCheck(8);">)</p>
+        </div>
     </div>
     <canvas id="gamefield" width=512 height=256>
         <script src="index.js"></script>
