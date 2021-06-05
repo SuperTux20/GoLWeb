@@ -56,6 +56,9 @@ button {
     #info {
         margin: 20% 20%;
     }
+    .cbblock {
+        margin: 0 10%;
+    }
 }
 
 .menu {
