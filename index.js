@@ -26,7 +26,7 @@ let reproduction = {
 };
 var GoL;
 var speed;
-
+var zoom = 4;
 const canvas = document.querySelector("#gamefield");
 const ctx = canvas.getContext("2d");
 const game = new CellularAutomaton()
@@ -58,10 +58,15 @@ function repCheck(number) {
     reproduction[number] = document.getElementById("r".concat(number)).checked;
 }
 
+var factor = document.getElementById("zoomfactor");
 var slider = document.getElementById("speed");
 var output = document.getElementById("speedlabel");
 
-function speedcheck() {
+function changeZoom() {
+    zoom = factor.value;
+}
+
+function speedCheck() {
     speed = slider.value;
     if (speed == 0)
         output.innerHTML = "MAX"
@@ -69,10 +74,14 @@ function speedcheck() {
         output.innerHTML = speed.concat("ms per update");
 }
 
-speedcheck();
+factor.oninput = function() {
+    changeZoom()
+    try { clearInterval(GoL); } catch {}
+    GoL = setInterval(() => { game.runGame(); }, speed);
+}
 
 slider.oninput = function() {
-    speedcheck()
+    speedCheck()
     try { clearInterval(GoL); } catch {}
     GoL = setInterval(() => { game.runGame(); }, speed);
 }
@@ -80,6 +89,8 @@ slider.oninput = function() {
 onload = () => {
     toggleNeighborhood();
     extendNewman();
+    speedCheck();
+    changeZoom();
     for (var i = 0; i < 9; i++) {
         surCheck(i)
         repCheck(i)

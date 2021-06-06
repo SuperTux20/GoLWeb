@@ -15,8 +15,6 @@
         <a href="index.html" class="menu"><button class="menu">Back to splash page</button></a>
         <a href="about.html" class="menu"><button class="menu">About Cellular Automata</button></a>
     </nav>
-    <p>Basic Game of Life engine taken from multiple sources</p>
-    <p>Configuration options added by me</p>
     <div id="control">
         <button id="start">Start</button>
         <button id="stop">Stop</button>
@@ -27,12 +25,14 @@
     </div>
     <br />
     <div id="config">
+        <p id="zoom">Zoom</p>
+        <input id="zoomfactor" type="number" value="4" min="1" onchange="changeZoom();">
+        <br />
         <p id="moore-newman">Moore (8-cell) Neighborhood</p>
         <input id="mncheck" type="checkbox" checked="true" onchange="toggleNeighborhood();">
         <br />
         <p id="extended-newman">Extended</p>
         <input id="extcheck" type="checkbox" onchange="extendNewman();">
-        <br />
         <br />
         <p class="cblabel">Neighbors needed to live:</p>
         <div class="cbblock">
@@ -69,6 +69,11 @@
     <canvas id="gamefield" width=512 height=256>
         <script src="index.js"></script>
     </canvas>
+    <footer>
+        <p>Basic Game of Life engine taken from multiple sources</p>
+        <p>Configuration options added by me</p>
+        <p>&copy;2021 Ethan Landon</p>
+    </footer>
 </body>
 
 </html>
