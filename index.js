@@ -62,22 +62,12 @@ var factor = document.getElementById("zoomfactor");
 var slider = document.getElementById("speed");
 var output = document.getElementById("speedlabel");
 
-function changeZoom() {
-    zoom = factor.value;
-}
-
 function speedCheck() {
     speed = slider.value;
     if (speed == 0)
         output.innerHTML = "MAX"
     else
         output.innerHTML = speed.concat("ms per update");
-}
-
-factor.oninput = function() {
-    changeZoom()
-    try { clearInterval(GoL); } catch {}
-    GoL = setInterval(() => { game.runGame(); }, speed);
 }
 
 slider.oninput = function() {
@@ -90,7 +80,6 @@ onload = () => {
     toggleNeighborhood();
     extendNewman();
     speedCheck();
-    changeZoom();
     for (var i = 0; i < 9; i++) {
         surCheck(i)
         repCheck(i)

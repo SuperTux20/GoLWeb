@@ -26,7 +26,8 @@
     <br />
     <div id="config">
         <p id="zoom">Zoom</p>
-        <input id="zoomfactor" type="number" value="4" min="1" onchange="changeZoom();">
+        <input id="zoomfactor" type="number" value="4" min="1" max="10" onchange="location.reload();">
+        <p>Note: lower zoom factor makes the page run slower</p>
         <br />
         <p id="moore-newman">Moore (8-cell) Neighborhood</p>
         <input id="mncheck" type="checkbox" checked="true" onchange="toggleNeighborhood();">
@@ -69,7 +70,7 @@
     <canvas id="gamefield" width=512 height=256>
         <script src="index.js"></script>
     </canvas>
-    <footer>
+    <footer class="big">
         <p>Basic Game of Life engine taken from multiple sources</p>
         <p>Configuration options added by me</p>
         <p>&copy;2021 Ethan Landon</p>

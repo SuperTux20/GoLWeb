@@ -98,6 +98,10 @@ footer {
     background-color: #0000007f;
 }
 
+footer.big {
+    padding: 0;
+}
+
 footer p {
     background-color: #00000000;
 }
