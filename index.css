@@ -3,11 +3,18 @@
     background-color: #000000;
     color: #ffffff;
     font-family: "Liberation Sans", "Arial", "Helvetica", sans-serif;
+    font-size: 16pt;
     padding: 0;
     margin: 0;
 }
 
-button {
+#control *,
+#config * {
+    font-size: 12pt;
+}
+
+button,
+a.menu {
     background-color: #007f7fbf;
     font-size: 16pt;
     padding: 8px;
@@ -36,20 +43,43 @@ button {
 }
 
 .menu {
-    font-size: 5em;
-    margin: 10%;
+    margin: 5%;
 }
 
-button.menu {
-    margin: 0;
-    font-size: 16pt;
+a.menu {
+    display: block;
+    margin: 1%;
     cursor: pointer;
     border-radius: 32px;
+    width: 33%;
+    text-decoration: none;
+    position: static;
 }
 
-@media only screen and (min-width: 1000px) {
+#hiddenbreak {
+    display: none;
+}
+
+@media only screen and (min-width: 1200px) {
     #info {
         margin: 5% 20%;
+    }
+    a.menu {
+        font-size: 16pt;
+    }
+    #splash a.menu,
+    h1.menu {
+        font-size: 5em;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #info {
+        margin: 5% 20%;
+    }
+    #splash a.menu,
+    h1.menu {
+        font-size: 4em;
     }
 }
 
@@ -57,17 +87,31 @@ button.menu {
     #info {
         margin: 10% 20%;
     }
+    a.menu {
+        font-size: 14pt;
+    }
+    #splash a.menu,
+    h1.menu {
+        font-size: 3em;
+    }
 }
 
 @media only screen and (max-width: 800px) {
     #info {
         margin: 15% 20%;
     }
+    a.menu {
+        font-size: 10pt;
+    }
+    #splash a.menu,
+    h1.menu {
+        font-size: 2em;
+    }
     .cbblock {
         margin: 0 10%;
     }
-    button.menu {
-        font-size: 14pt;
+    #hiddenbreak {
+        display: inline-block;
     }
 }
 
@@ -75,8 +119,12 @@ button.menu {
     #info {
         margin: 20% 20%;
     }
-    button.menu {
-        font-size: 12pt;
+    a.menu {
+        font-size: 8pt;
+    }
+    #splash a.menu,
+    h1.menu {
+        font-size: 1em;
     }
 }
 
@@ -87,6 +135,9 @@ button.menu {
 
 nav {
     margin: 0 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 footer {
@@ -98,8 +149,10 @@ footer {
     background-color: #0000007f;
 }
 
-footer.big {
+footer.big,
+footer.big p {
     padding: 0;
+    font-size: 12pt;
 }
 
 footer p {

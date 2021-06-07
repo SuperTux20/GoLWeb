@@ -12,8 +12,8 @@
 
 <body>
     <nav>
-        <a href="index.html" class="menu"><button class="menu">Back to splash page</button></a>
-        <a href="about.html" class="menu"><button class="menu">About Cellular Automata</button></a>
+        <a href="index.html" class="menu">Back to splash page</a>
+        <a href="about.html" class="menu">About Cellular Automata</a>
     </nav>
     <div id="control">
         <button id="start">Start</button>
@@ -25,12 +25,10 @@
     </div>
     <br />
     <div id="config">
-        <p id="zoom">Zoom</p>
-        <input id="zoomfactor" type="number" value="4" min="1" max="10" onchange="location.reload();">
-        <p>Note: lower zoom factor makes the page run slower</p>
+        <p id="zoom">Zoom <input id="zoomfactor" type="number" value="4" min="1" max="10" onchange="location.reload();"><br id="hiddenbreak" /> (note: lower zoom factor makes the page run slower)</p>
         <br />
         <p id="moore-newman">Moore (8-cell) Neighborhood</p>
-        <input id="mncheck" type="checkbox" checked="true" onchange="toggleNeighborhood();">
+        <input id="mncheck" type="checkbox" checked onchange="toggleNeighborhood();">
         <br />
         <p id="extended-newman">Extended</p>
         <input id="extcheck" type="checkbox" onchange="extendNewman();">
@@ -40,9 +38,9 @@
             <p class="cbblock">(0
                 <input id="s0" type="checkbox" onchange="surCheck(0);">) (1
                 <input id="s1" type="checkbox" onchange="surCheck(1);">) (2
-                <input id="s2" type="checkbox" onchange="surCheck(2);" checked="true">)</p>
+                <input id="s2" type="checkbox" onchange="surCheck(2);" checked>)</p>
             <p class="cbblock">(3
-                <input id="s3" type="checkbox" onchange="surCheck(3);" checked="true">) (4
+                <input id="s3" type="checkbox" onchange="surCheck(3);" checked>) (4
                 <input id="s4" type="checkbox" onchange="surCheck(4);">) (5
                 <input id="s5" type="checkbox" onchange="surCheck(5);">)</p>
             <p class="cbblock">(6
@@ -58,7 +56,7 @@
                 <input id="r1" type="checkbox" onchange="repCheck(1);">) (2
                 <input id="r2" type="checkbox" onchange="repCheck(2);">)</p>
             <p class="cbblock">(3
-                <input id="r3" type="checkbox" onchange="repCheck(3);" checked="true">) (4
+                <input id="r3" type="checkbox" onchange="repCheck(3);" checked>) (4
                 <input id="r4" type="checkbox" onchange="repCheck(4);">) (5
                 <input id="r5" type="checkbox" onchange="repCheck(5);">)</p>
             <p class="cbblock">(6
