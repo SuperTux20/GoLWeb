@@ -146,7 +146,7 @@ footer {
     padding: 2% 0;
     width: 100%;
     text-align: center;
-    background-color: #0000007f;
+    background-color: #00000000;
 }
 
 footer.big,
@@ -156,5 +156,5 @@ footer.big p {
 }
 
 footer p {
-    background-color: #00000000;
+    background-color: #0000007f;
 }
