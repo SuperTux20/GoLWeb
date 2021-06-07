@@ -26,7 +26,6 @@ let reproduction = {
 };
 var GoL;
 var speed;
-var zoom = 4;
 const canvas = document.querySelector("#gamefield");
 const ctx = canvas.getContext("2d");
 const game = new CellularAutomaton()
@@ -58,7 +57,6 @@ function repCheck(number) {
     reproduction[number] = document.getElementById("r".concat(number)).checked;
 }
 
-var factor = document.getElementById("zoomfactor");
 var slider = document.getElementById("speed");
 var output = document.getElementById("speedlabel");
 

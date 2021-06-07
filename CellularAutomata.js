@@ -1,6 +1,6 @@
 class CellularAutomaton {
     constructor() {
-        this.cell_size = document.getElementById("zoomfactor").value;
+        this.cell_size = 4;
         this.dead_color = `#000000`;
         this.alive_color = `#007f7f`;
         this.cells_in_column = Math.floor(canvas.width / this.cell_size);
