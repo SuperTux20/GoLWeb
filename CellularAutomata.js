@@ -13,20 +13,21 @@ class CellularAutomaton {
                 this.inactive_array[i] = [];
                 for (let j = 0; j < this.cells_in_column; j++)
                     this.inactive_array[i][j] = false;
+                this.inactive_array[i][this.cells_in_column] = "PADDING";
             }
             this.active_array = this.inactive_array;
         };
 
         this.arrayRand = () => {
             for (let i = 0; i < this.cells_in_rows; i++) {
-                for (let j = 0; j < this.cells_in_column; j++)
-                    this.inactive_array[i][j] = (Math.random() > 0.5) ? true : false;
+                for (let j = 0; j < this.cells_in_column - 1; j++)
+                    this.active_array[i][j] = (Math.random() > 0.5) ? true : false;
             }
         };
 
         this.fillArray = () => {
             for (let i = 0; i < this.cells_in_rows; i++) {
-                for (let j = 0; j < this.cells_in_column; j++) {
+                for (let j = 0; j < this.cells_in_column - 1; j++) {
                     let color;
                     if (this.active_array[i][j] == 1)
                         color = this.alive_color;
@@ -39,9 +40,7 @@ class CellularAutomaton {
         };
 
         this.cntNghbrs = () => {
-            this.valueHelper = (row, col) => {
-                try { return this.inactive_array[row][col] ? 1 : 0; } catch { return 0; }
-            };
+            this.valueHelper = (row, col) => { try { return this.inactive_array[row][col] ? 1 : 0; } catch { return 0; } };
             this.cntNghbrs = (row, col) => {
                 let total_neighbors = 0;
                 total_neighbors += this.valueHelper(row - 1, col);
@@ -82,17 +81,51 @@ class CellularAutomaton {
 
         this.upLifeCyc = () => {
             for (let i = 0; i < this.cells_in_rows; i++) {
-                for (let j = 0; j < this.cells_in_column; j++) {
+                for (let j = 0; j < this.cells_in_column - 1; j++) {
                     let new_state = this.upCellVal(i, j);
-                    this.inactive_array[i][j] = new_state;
+                    this.active_array[i][j] = new_state;
                 }
             }
-            this.active_array = this.inactive_array;
+            this.inactive_array = this.active_array;
         };
 
         this.runGame = () => {
             this.upLifeCyc();
             this.fillArray();
         };
+
+        this.saveState = () => {
+            if (sessionStorage) {
+                var state = this.active_array;
+                for (let row in state) {
+                    for (let col in state[row]) {
+                        if (state[row][col] === undefined) {
+                            state[row][col] = false;
+                        }
+                    }
+                }
+                sessionStorage.setItem("state", state);
+            } else {
+                alert("This browser does not support session storage, save states cannot be used. Sorry buddy ¯\\_(ツ)_/¯");
+            }
+        }
+
+        this.loadState = () => {
+            var state = sessionStorage.state.split(",PADDING,");
+            for (let row in state) {
+                state[row] = state[row].split(",");
+            }
+            state[state.length - 1] = state[state.length - 1].filter(item => item !== "PADDING");
+            for (let row in state) {
+                for (let col in state[row]) {
+                    state[row][col] = JSON.parse(state[row][col])
+                }
+                state[row][this.cells_in_column] = "PADDING";
+            }
+            if (state != null) {
+                this.active_array = state;
+                this.inactive_array = state;
+            }
+        }
     }
 }

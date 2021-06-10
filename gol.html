@@ -22,44 +22,46 @@
         <input type="range" min="0" max="1000" value="500" id="speed">
         <p>Speed: <span id="speedlabel">500ms per update</span></p>
     </div>
-    <br />
     <div id="config">
         <p id="moore-newman">Moore (8-cell) Neighborhood</p>
-        <input id="mncheck" type="checkbox" checked onchange="toggleNeighborhood();">
+        <input id="mncheck" type="checkbox" checked>
         <br />
-        <p id="extended-newman">Extended</p>
-        <input id="extcheck" type="checkbox" onchange="extendNewman();">
+        <p class="extended-newman">Extended</p>
+        <input class="extended-newman" id="extcheck" type="checkbox">
+        <br class="extended-newman" />
+        <button id="save">Save</button>
+        <button id="load">Load</button>
         <br />
         <p class="cblabel">Neighbors needed to live:</p>
         <div class="cbblock">
             <p class="cbblock">(0
-                <input id="s0" type="checkbox" onchange="surCheck(0);">) (1
-                <input id="s1" type="checkbox" onchange="surCheck(1);">) (2
-                <input id="s2" type="checkbox" onchange="surCheck(2);" checked>)</p>
+                <input class="s" id="s0" type="checkbox">) (1
+                <input class="s" id="s1" type="checkbox">) (2
+                <input class="s" id="s2" type="checkbox" checked>)</p>
             <p class="cbblock">(3
-                <input id="s3" type="checkbox" onchange="surCheck(3);" checked>) (4
-                <input id="s4" type="checkbox" onchange="surCheck(4);">) (5
-                <input id="s5" type="checkbox" onchange="surCheck(5);">)</p>
+                <input class="s" id="s3" type="checkbox" checked>) (4
+                <input class="s" id="s4" type="checkbox">) (5
+                <input class="s" id="s5" type="checkbox">)</p>
             <p class="cbblock">(6
-                <input id="s6" type="checkbox" onchange="surCheck(6);">) (7
-                <input id="s7" type="checkbox" onchange="surCheck(7);">) (8
-                <input id="s8" type="checkbox" onchange="surCheck(8);">)</p>
+                <input class="s" id="s6" type="checkbox">) (7
+                <input class="s" id="s7" type="checkbox">) (8
+                <input class="s" id="s8" type="checkbox">)</p>
         </div>
         <br />
         <p class="cblabel">Neighbors needed to grow:</p>
         <div class="cbblock">
             <p class="cbblock">(0
-                <input id="r0" type="checkbox" onchange="repCheck(0);">) (1
-                <input id="r1" type="checkbox" onchange="repCheck(1);">) (2
-                <input id="r2" type="checkbox" onchange="repCheck(2);">)</p>
+                <input class="r" id="r0" type="checkbox">) (1
+                <input class="r" id="r1" type="checkbox">) (2
+                <input class="r" id="r2" type="checkbox">)</p>
             <p class="cbblock">(3
-                <input id="r3" type="checkbox" onchange="repCheck(3);" checked>) (4
-                <input id="r4" type="checkbox" onchange="repCheck(4);">) (5
-                <input id="r5" type="checkbox" onchange="repCheck(5);">)</p>
+                <input class="r" id="r3" type="checkbox" checked>) (4
+                <input class="r" id="r4" type="checkbox">) (5
+                <input class="r" id="r5" type="checkbox">)</p>
             <p class="cbblock">(6
-                <input id="r6" type="checkbox" onchange="repCheck(6);">) (7
-                <input id="r7" type="checkbox" onchange="repCheck(7);">) (8
-                <input id="r8" type="checkbox" onchange="repCheck(8);">)</p>
+                <input class="r" id="r6" type="checkbox">) (7
+                <input class="r" id="r7" type="checkbox">) (8
+                <input class="r" id="r8" type="checkbox">)</p>
         </div>
     </div>
     <br />

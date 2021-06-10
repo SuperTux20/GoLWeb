@@ -1,6 +1,5 @@
 let moore = true;
 let extendvn = false;
-
 let survival = {
     0: false,
     1: false,
@@ -32,15 +31,18 @@ const game = new CellularAutomaton()
 game.arrayInit()
 
 function toggleNeighborhood() {
+    var ext = document.getElementsByClassName("extended-newman");
     if (document.getElementById("mncheck").checked) {
         document.getElementById("moore-newman").textContent = "Moore (8-cell) Neighborhood";
-        document.getElementById("extcheck").style = "display: hidden;";
-        document.getElementById("extended-newman").style = "display: hidden;";
+        for (let element in ext) {
+            ext[element].style = "display: none;";
+        }
         moore = true;
     } else {
         document.getElementById("moore-newman").textContent = "Von Neuman (4-cell) Neighborhood";
-        document.getElementById("extcheck").style = "display: inline-block;";
-        document.getElementById("extended-newman").style = "display: inline-block;";
+        for (let element in ext) {
+            ext[element].style = "display: inline-block;";
+        }
         moore = false;
     }
 }
@@ -90,5 +92,32 @@ onload = () => {
             GoL = setInterval(() => { game.runGame(); }, speed);
         }
     )
+
     document.getElementById("stop").addEventListener("click", () => { clearInterval(GoL); })
+
+    document.getElementById("mncheck").addEventListener("input", () => { toggleNeighborhood(); })
+
+    document.getElementById("extcheck").addEventListener("input", () => { extendNewman(); })
+
+    document.getElementById("save").addEventListener("click", () => { game.saveState(); })
+
+    document.getElementById("load").addEventListener("click", () => { game.loadState(); })
+
+    for (let checkbox = 0; checkbox < 9; checkbox++) {
+        try {
+            document.getElementById(document.getElementsByClassName("s")[checkbox].id).addEventListener(
+                "input", () => {
+                    surCheck(parseInt(document.getElementsByClassName("s")[checkbox].id.split("")[1]));
+                }
+            )
+        } catch {}
+        try {
+            document.getElementById(document.getElementsByClassName("r")[checkbox].id).addEventListener(
+                "input", () => {
+                    repCheck(parseInt(document.getElementsByClassName("r")[checkbox].id.split("")[1]));
+                }
+            )
+        } catch {}
+        // you know, I didn't think this would actually work
+    }
 }

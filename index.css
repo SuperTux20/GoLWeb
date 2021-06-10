@@ -36,8 +36,7 @@ a.menu {
     font-family: "Liberation Mono", monospace;
 }
 
-#extended-newman,
-#extcheck {
+.extended-newman {
     display: none;
 }
 
@@ -53,10 +52,6 @@ a.menu {
     width: 33%;
     text-decoration: none;
     position: static;
-}
-
-#hiddenbreak {
-    display: none;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -108,9 +103,6 @@ a.menu {
     }
     .cbblock {
         margin: 0 10%;
-    }
-    #hiddenbreak {
-        display: inline-block;
     }
 }
 
