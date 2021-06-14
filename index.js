@@ -27,8 +27,8 @@ var GoL;
 var speed;
 const canvas = document.querySelector("#gamefield");
 const ctx = canvas.getContext("2d");
-const game = new CellularAutomaton()
-game.arrayInit()
+const game = new CellularAutomaton();
+game.arrayInit();
 
 function toggleNeighborhood() {
     var ext = document.getElementsByClassName("extended-newman");
@@ -65,24 +65,24 @@ var output = document.getElementById("speedlabel");
 function speedCheck() {
     speed = slider.value;
     if (speed == 0)
-        output.innerHTML = "MAX"
+        output.innerHTML = "MAX";
     else
         output.innerHTML = speed.concat("ms per update");
 }
 
 slider.oninput = function() {
-    speedCheck()
+    speedCheck();
     try { clearInterval(GoL); } catch {}
     GoL = setInterval(() => { game.runGame(); }, speed);
-}
+};
 
 onload = () => {
     toggleNeighborhood();
     extendNewman();
     speedCheck();
     for (var i = 0; i < 9; i++) {
-        surCheck(i)
-        repCheck(i)
+        surCheck(i);
+        repCheck(i);
     }
     document.getElementById("start").addEventListener(
         "click", () => {
@@ -91,17 +91,17 @@ onload = () => {
             game.fillArray();
             GoL = setInterval(() => { game.runGame(); }, speed);
         }
-    )
+    );
 
-    document.getElementById("stop").addEventListener("click", () => { clearInterval(GoL); })
+    document.getElementById("stop").addEventListener("click", () => { clearInterval(GoL); });
 
-    document.getElementById("mncheck").addEventListener("input", () => { toggleNeighborhood(); })
+    document.getElementById("mncheck").addEventListener("input", () => { toggleNeighborhood(); });
 
-    document.getElementById("extcheck").addEventListener("input", () => { extendNewman(); })
+    document.getElementById("extcheck").addEventListener("input", () => { extendNewman(); });
 
-    document.getElementById("save").addEventListener("click", () => { game.saveState(); })
+    document.getElementById("save").addEventListener("click", () => { game.saveState(); });
 
-    document.getElementById("load").addEventListener("click", () => { game.loadState(); })
+    document.getElementById("load").addEventListener("click", () => { game.loadState(); });
 
     for (let checkbox = 0; checkbox < 9; checkbox++) {
         try {
@@ -109,15 +109,15 @@ onload = () => {
                 "input", () => {
                     surCheck(parseInt(document.getElementsByClassName("s")[checkbox].id.split("")[1]));
                 }
-            )
+            );
         } catch {}
         try {
             document.getElementById(document.getElementsByClassName("r")[checkbox].id).addEventListener(
                 "input", () => {
                     repCheck(parseInt(document.getElementsByClassName("r")[checkbox].id.split("")[1]));
                 }
-            )
+            );
         } catch {}
         // you know, I didn't think this would actually work
     }
-}
+};

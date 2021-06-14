@@ -108,7 +108,7 @@ class CellularAutomaton {
             } else {
                 alert("This browser does not support session storage, save states cannot be used. Sorry buddy ¯\\_(ツ)_/¯");
             }
-        }
+        };
 
         this.loadState = () => {
             var state = localStorage.state.split(",PADDING,");
@@ -118,7 +118,7 @@ class CellularAutomaton {
             state[state.length - 1] = state[state.length - 1].filter(item => item !== "PADDING");
             for (let row in state) {
                 for (let col in state[row]) {
-                    state[row][col] = JSON.parse(state[row][col])
+                    state[row][col] = JSON.parse(state[row][col]);
                 }
                 state[row][this.cells_in_column] = "PADDING";
             }
@@ -126,6 +126,6 @@ class CellularAutomaton {
                 this.active_array = state;
                 this.inactive_array = state;
             }
-        }
+        };
     }
 }
