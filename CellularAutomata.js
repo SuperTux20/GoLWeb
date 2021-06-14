@@ -11,28 +11,19 @@ class CellularAutomaton {
         this.arrayInit = () => {
             for (let i = 0; i < this.cells_in_rows; i++) {
                 this.inactive_array[i] = [];
-                for (let j = 0; j < this.cells_in_column; j++)
-                    this.inactive_array[i][j] = false;
+                for (let j = 0; j < this.cells_in_column; j++) { this.inactive_array[i][j] = false; }
                 this.inactive_array[i][this.cells_in_column] = "PADDING";
             }
             this.active_array = this.inactive_array;
         };
 
-        this.arrayRand = () => {
-            for (let i = 0; i < this.cells_in_rows; i++) {
-                for (let j = 0; j < this.cells_in_column - 1; j++)
-                    this.active_array[i][j] = (Math.random() > 0.5) ? true : false;
-            }
-        };
+        this.arrayRand = () => { for (let i = 0; i < this.cells_in_rows; i++) { for (let j = 0; j < this.cells_in_column - 1; j++) this.active_array[i][j] = (Math.random() > 0.5) ? true : false; } };
 
         this.fillArray = () => {
             for (let i = 0; i < this.cells_in_rows; i++) {
                 for (let j = 0; j < this.cells_in_column - 1; j++) {
                     let color;
-                    if (this.active_array[i][j] == 1)
-                        color = this.alive_color;
-                    else
-                        color = this.dead_color;
+                    if (this.active_array[i][j] == 1) { color = this.alive_color; } else { color = this.dead_color; }
                     ctx.fillStyle = color;
                     ctx.fillRect(j * this.cell_size, i * this.cell_size, this.cell_size, this.cell_size);
                 }
@@ -70,13 +61,7 @@ class CellularAutomaton {
                         return reproduction[reproducible];
                     }
                 }
-            } else if (this.active_array[row][col]) {
-                for (var survivable in survival) {
-                    if (total == survivable && survival[survivable]) {
-                        return survival[survivable];
-                    }
-                }
-            }
+            } else if (this.active_array[row][col]) { for (var survivable in survival) { if (total == survivable && survival[survivable]) { return survival[survivable]; } } }
         };
 
         this.upLifeCyc = () => {
@@ -97,29 +82,17 @@ class CellularAutomaton {
         this.saveState = () => {
             if (localStorage) {
                 var state = this.active_array;
-                for (let row in state) {
-                    for (let col in state[row]) {
-                        if (state[row][col] === undefined) {
-                            state[row][col] = false;
-                        }
-                    }
-                }
+                for (let row in state) { for (let col in state[row]) { if (state[row][col] === undefined) { state[row][col] = false; } } }
                 localStorage.setItem("state", state);
-            } else {
-                alert("This browser does not support session storage, save states cannot be used. Sorry buddy ¯\\_(ツ)_/¯");
-            }
+            } else { alert("This browser does not support session storage, save states cannot be used. Sorry buddy ¯\\_(ツ)_/¯"); }
         };
 
         this.loadState = () => {
             var state = localStorage.state.split(",PADDING,");
-            for (let row in state) {
-                state[row] = state[row].split(",");
-            }
+            for (let row in state) { state[row] = state[row].split(","); }
             state[state.length - 1] = state[state.length - 1].filter(item => item !== "PADDING");
             for (let row in state) {
-                for (let col in state[row]) {
-                    state[row][col] = JSON.parse(state[row][col]);
-                }
+                for (let col in state[row]) { state[row][col] = JSON.parse(state[row][col]); }
                 state[row][this.cells_in_column] = "PADDING";
             }
             if (state != null) {

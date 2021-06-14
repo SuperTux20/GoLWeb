@@ -34,40 +34,27 @@ function toggleNeighborhood() {
     var ext = document.getElementsByClassName("extended-newman");
     if (document.getElementById("mncheck").checked) {
         document.getElementById("moore-newman").textContent = "Moore (8-cell) Neighborhood";
-        for (let element in ext) {
-            ext[element].style = "display: none;";
-        }
+        for (let element in ext) { ext[element].style = "display: none;"; }
         moore = true;
     } else {
         document.getElementById("moore-newman").textContent = "Von Neuman (4-cell) Neighborhood";
-        for (let element in ext) {
-            ext[element].style = "display: inline-block;";
-        }
+        for (let element in ext) { ext[element].style = "display: inline-block;"; }
         moore = false;
     }
 }
 
-function extendNewman() {
-    extendvn = document.getElementById("extcheck").checked;
-}
+function extendNewman() { extendvn = document.getElementById("extcheck").checked; }
 
-function surCheck(number) {
-    survival[number] = document.getElementById("s".concat(number)).checked;
-}
+function surCheck(number) { survival[number] = document.getElementById("s".concat(number)).checked; }
 
-function repCheck(number) {
-    reproduction[number] = document.getElementById("r".concat(number)).checked;
-}
+function repCheck(number) { reproduction[number] = document.getElementById("r".concat(number)).checked; }
 
 var slider = document.getElementById("speed");
 var output = document.getElementById("speedlabel");
 
 function speedCheck() {
     speed = slider.value;
-    if (speed == 0)
-        output.innerHTML = "MAX";
-    else
-        output.innerHTML = speed.concat("ms per update");
+    if (speed == 0) { output.innerHTML = "MAX"; } else { output.innerHTML = speed.concat("ms per update"); }
 }
 
 slider.oninput = function() {
@@ -75,6 +62,10 @@ slider.oninput = function() {
     try { clearInterval(GoL); } catch {}
     GoL = setInterval(() => { game.runGame(); }, speed);
 };
+
+function getS(box) { return document.getElementsByClassName("s")[box].id; }
+
+function getR(box) { return document.getElementsByClassName("r")[box].id; }
 
 onload = () => {
     toggleNeighborhood();
@@ -94,30 +85,14 @@ onload = () => {
     );
 
     document.getElementById("stop").addEventListener("click", () => { clearInterval(GoL); });
-
     document.getElementById("mncheck").addEventListener("input", () => { toggleNeighborhood(); });
-
     document.getElementById("extcheck").addEventListener("input", () => { extendNewman(); });
-
     document.getElementById("save").addEventListener("click", () => { game.saveState(); });
-
     document.getElementById("load").addEventListener("click", () => { game.loadState(); });
 
     for (let checkbox = 0; checkbox < 9; checkbox++) {
-        try {
-            document.getElementById(document.getElementsByClassName("s")[checkbox].id).addEventListener(
-                "input", () => {
-                    surCheck(parseInt(document.getElementsByClassName("s")[checkbox].id.split("")[1]));
-                }
-            );
-        } catch {}
-        try {
-            document.getElementById(document.getElementsByClassName("r")[checkbox].id).addEventListener(
-                "input", () => {
-                    repCheck(parseInt(document.getElementsByClassName("r")[checkbox].id.split("")[1]));
-                }
-            );
-        } catch {}
+        try { document.getElementById(getS(checkbox)).addEventListener("input", () => { surCheck(parseInt(getS(checkbox).split("")[1])); }); } catch {}
+        try { document.getElementById(getR(checkbox)).addEventListener("input", () => { repCheck(parseInt(getR(checkbox).split("")[1])); }); } catch {}
         // you know, I didn't think this would actually work
     }
 };
