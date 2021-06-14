@@ -55,13 +55,7 @@ class CellularAutomaton {
 
         this.upCellVal = (row, col) => {
             var total = this.cntNghbrs(row, col);
-            if (!this.active_array[row][col]) {
-                for (var reproducible in reproduction) {
-                    if (total == reproducible && reproduction[reproducible]) {
-                        return reproduction[reproducible];
-                    }
-                }
-            } else if (this.active_array[row][col]) { for (var survivable in survival) { if (total == survivable && survival[survivable]) { return survival[survivable]; } } }
+            if (!this.active_array[row][col]) { for (var reproducible in reproduction) { if (total == reproducible && reproduction[reproducible]) { return reproduction[reproducible]; } } } else if (this.active_array[row][col]) { for (var survivable in survival) { if (total == survivable && survival[survivable]) { return survival[survivable]; } } }
         };
 
         this.upLifeCyc = () => {
