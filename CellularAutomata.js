@@ -95,7 +95,7 @@ class CellularAutomaton {
         };
 
         this.saveState = () => {
-            if (sessionStorage) {
+            if (localStorage) {
                 var state = this.active_array;
                 for (let row in state) {
                     for (let col in state[row]) {
@@ -104,14 +104,14 @@ class CellularAutomaton {
                         }
                     }
                 }
-                sessionStorage.setItem("state", state);
+                localStorage.setItem("state", state);
             } else {
                 alert("This browser does not support session storage, save states cannot be used. Sorry buddy ¯\\_(ツ)_/¯");
             }
         }
 
         this.loadState = () => {
-            var state = sessionStorage.state.split(",PADDING,");
+            var state = localStorage.state.split(",PADDING,");
             for (let row in state) {
                 state[row] = state[row].split(",");
             }
